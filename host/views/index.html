@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="rhango@EDP">
+
+    <link rel="stylesheet" type="text/css" href="css/host.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/host.js"></script>
+
+    <title>EDP 受付</title>
+  </head>
+
+  <body>
+    <div id="yukkuri">
+      <img src="img/body.png">
+      <img class="eye" data-index="0" src="img/eye0.png">
+      <img class="eye" data-index="1" src="img/eye1.png">
+      <img class="eye" data-index="2" src="img/eye2.png">
+      <img class="eye" data-index="3" src="img/eye3.png">
+      <img class="mouth" data-index="0" src="img/mouth0.png">
+      <img class="mouth" data-index="1" src="img/mouth1.png">
+      <img class="mouth" data-index="2" src="img/mouth2.png">
+    </div>
+    <p id="test"></p>
+    <div id="audios">
+      <% var length = movie_names.length; %>
+      <% for(var i = 0; i < length; i++){ %>
+      <audio preload="auto"
+             name="<%= movie_names[i] %>"
+             src="<%= audio_sources[i] %>">
+      </audio>
+      <% } %>
+    </div>
+  </body>
+</html>

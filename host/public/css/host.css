@@ -1,0 +1,22 @@
+#yukkuri{
+    width: 400px;
+    height: 400px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#yukkuri img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#yukkuri [data-index="0"]{
+    z-index: 0;
+}
+
+#yukkuri [data-index]:not([data-index="0"]){
+    z-index: -1;
+}

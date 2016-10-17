@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0,
+                   user-scalable=no">
+    <meta name="author" content="rhango@EDP">
+
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/client.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/fx.js"></script>
+    <script src="js/mui.min.js"></script>
+    <script src="js/client.js"></script>
+
+    <title>EDP 受付アプリ</title>
+  </head>
+
+  <body>
+    <div id="playlist" class="mui-appbar mui--z3">
+      <div id="accordion">
+        <ol class="mui-list--unstyled"></ol>
+      </div>
+      <hr>
+      <button class="mui-btn mui-btn--small mui-btn--fab">
+        <span class="mui-caret"></span>
+      </button>
+    </div>
+    <div id="modes" class="mui-dropdown">
+      <button class="mui-btn mui-btn--raised mui-btn--primary mui--z2"
+              data-mui-toggle="dropdown">
+        <span id="selected_mode" value="push">push</span>
+        <span class="mui-caret"></span>
+      </button>
+      <ul class="mui-dropdown__menu mui-dropdown__menu--right mui--z2">
+        <li><a href="javascript:void(0);" value="push">
+            push
+        </a></li>
+        <li><a href="javascript:void(0);" value="unshift">
+            unshift
+        </a></li>
+        <li><a href="javascript:void(0);" value="interrupt">
+            interrupt
+        </a></li>
+      </ul>
+    </div>
+    <div id="messages">
+      <% var length = movie_names.length; %>
+      <% for(var i = 0; i < length; i++){ %>
+      <button class="mui-btn mui-btn--raised"
+              type="button"
+              value="<%= movie_names[i] %>">
+        <%= movie_names[i] %>
+      </button>
+      <% } %>
+    </div>
+  </body>
+</html>
