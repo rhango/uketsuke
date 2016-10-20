@@ -1,3 +1,5 @@
+// -*- Coding: utf-8-unix -*-
+
 $(function(){
     var socket                  = io();
     var selected_mode           = $('#selected_mode');

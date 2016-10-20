@@ -1,4 +1,14 @@
+// -*- Coding: utf-8-unix -*-
+
+// ----------------------------------------
+//  host.js
+// ----------------------------------------
+
 $(function(){
+
+    //  declare variable
+    // ------------------------------
+
     var socket             = io();
     var audios             = $('#audios audio');
     var audio_dict         = {};
@@ -10,9 +20,11 @@ $(function(){
     var playlist           = { list: [], max_length: 10 };
     var player_is_free     = true;
 
-    /*****************************
-      define & init & setting
-    *****************************/
+
+    //  init & define & setting
+    // ------------------------------
+
+    // ----- init -----
 
     (function make_audio_dict(){
         audios.each(function(){
@@ -38,6 +50,9 @@ $(function(){
             mouth_list[index] = this;
         });
     })();
+
+
+    // ----- define -----
 
     playlist.push = function(audio_name){
         var list = this.list;
@@ -84,13 +99,15 @@ $(function(){
         });
     }
 
+    // ----- config -----
+
     audios.on('ended', function(){
         play_audio();
     });
 
-    /*****************************
-      main program
-    *****************************/
+
+    //  main program
+    // ------------------------------
 
     (function move_eye(index, grad){
         setTimeout(function(){
@@ -161,3 +178,4 @@ $(function(){
         }
     });
 });
+

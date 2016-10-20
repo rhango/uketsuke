@@ -1,7 +1,15 @@
-// require and init
+// -*- Coding: utf-8-unix -*-
+
+// ----------------------------------------
+//  server.js
+// ----------------------------------------
+
+//  init
+// ------------------------------
 
 var temp_data = {};
 var playlist  = [];
+var audio_ext = /.*\.(wav|wma|mp3|mp4|m4a)$/i;
 
 var host = {
     dir : __dirname + '/host/',
@@ -27,20 +35,30 @@ var socket_io = require('socket.io');
 host.io       = socket_io(  host.server);
 client.io     = socket_io(client.server);
 
-// http
+
+//  audio search
+// ------------------------------
 
 var fs = require('fs');
-fs.readdir(host.dir + 'public/wav', function(err, audio_sources){
+fs.readdir(host.dir + 'public/audio', function(err, audio_sources){
+    var audio_sources = audio_sources.filter(function(audio_source){
+        return audio_ext.test(audio_source);
+    }).sort();
     var movie_names = [];
     var length = audio_sources.length;
     for(var i = 0; i < length; i++){
-        movie_names[i]
-            = audio_sources[i].replace(/(.*)(?:\.([^.]+$))/, '$1');
-        audio_sources[i] = 'wav/' + audio_sources[i];
+        movie_names[i] = audio_sources[i]
+            .replace(/(.*)(?:\.([^.]+$))/, '$1')
+            .replace(/.*?-/, '');
+        audio_sources[i] = 'audio/' + audio_sources[i];
     }
     temp_data.movie_names   = movie_names;
     temp_data.audio_sources = audio_sources;
 });
+
+
+//  app
+// ------------------------------
 
 var ejs = require('ejs');
 
@@ -65,7 +83,10 @@ client.app.get('/', function(req, res){
     res.render('index', temp_data);
 });
 
-// io
+
+//  io
+// ------------------------------
+
 host.io.on('connection', function(host_socket){
     console.log('host connected');
     playlist = [];
@@ -101,7 +122,10 @@ client.io.on('connection', function(client_socket){
     });
 });
 
-// start listening
+
+//  start listening
+// ------------------------------
+
 host.server.listen(host.port, host.ip, function(){
     console.log(
         'host.server start listening on '+ host.ip +':'+ host.port
@@ -113,3 +137,4 @@ client.server.listen(client.port, client.ip, function(){
         'client.server start listening on '+ client.ip +':'+ client.port
     );
 });
+
