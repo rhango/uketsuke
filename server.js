@@ -49,7 +49,7 @@ fs.readdir(host.dir + 'public/audio', function(err, audio_sources){
     for(var i = 0; i < length; i++){
         movie_names[i] = audio_sources[i]
             .replace(/(.*)(?:\.([^.]+$))/, '$1')
-            .replace(/.*?-/, '');
+            .replace(/^.*?-/, '');
         audio_sources[i] = 'audio/' + audio_sources[i];
     }
     temp_data.movie_names   = movie_names;

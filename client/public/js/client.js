@@ -71,6 +71,9 @@ $(function(){
     $('#playlist button').on('click', function(){
         switch(accordion_status){
         case 'closed':
+            $(this)
+                .addClass('rotate180')
+                .removeClass('rotate0');
             accordion.animate({
                 height: opened_accordion_height
             }, accordion_motion_time, 'ease');
@@ -78,6 +81,9 @@ $(function(){
             break;
 
         case 'opened':
+            $(this)
+                .addClass('rotate0')
+                .removeClass('rotate180');
             accordion.animate({
                 height: closed_accordion_height
             }, accordion_motion_time, 'ease');
